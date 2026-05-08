@@ -123,7 +123,6 @@ nav a:hover {
   z-index: 1;
 }
 
-
 section {
   max-width: 960px;
   margin: 0 auto;
@@ -257,6 +256,8 @@ section {
   flex-shrink: 0;
 }
 
+/* PROJECTS */
+
 .projects-list {
   display: flex;
   flex-direction: column;
@@ -264,20 +265,30 @@ section {
 
 .project-row {
   display: grid;
-  grid-template-columns: 60px 1fr auto;
+  grid-template-columns: 60px 160px 1fr auto;
   gap: 24px;
   align-items: start;
   padding: 28px 0;
   border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-  cursor: default;
+  transition: transform 0.2s, background 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .project-row:first-child {
   border-top: 1px solid var(--border);
 }
 
+.project-row:hover {
+  transform: translateX(6px);
+}
+
 .project-row:hover .project-index {
+  color: var(--accent);
+}
+
+.project-row:hover .project-info h3 {
   color: var(--accent);
 }
 
@@ -290,12 +301,22 @@ section {
   transition: color 0.2s;
 }
 
+.project-img {
+  width: 160px;
+  height: 95px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+}
+
 .project-info h3 {
   font-family: var(--font-body);
   font-size: 18px;
   font-weight: 500;
   color: var(--text);
   margin-bottom: 6px;
+  transition: color 0.2s;
 }
 
 .project-info p {
@@ -435,6 +456,7 @@ footer {
     opacity: 0;
     transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -442,8 +464,13 @@ footer {
 }
 
 @keyframes expandLine {
-  from { width: 0; }
-  to { width: 48px; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 48px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -470,13 +497,32 @@ footer {
     margin-bottom: 0;
   }
 
+  .about-stats {
+    flex-wrap: wrap;
+  }
+
   .skills-grid {
     grid-template-columns: 1fr;
   }
 
   .project-row {
     grid-template-columns: 40px 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+  }
+
+  .project-row:hover {
+    transform: none;
+  }
+
+  .project-img {
+    grid-column: 2;
+    width: 100%;
+    height: 180px;
+  }
+
+  .project-info {
+    grid-column: 2;
   }
 
   .project-tech {
